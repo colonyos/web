@@ -17,23 +17,20 @@
 </head>
 
 <body>
-
     <center><img width="150px" src="logo_bg.png"></center>
 
     <h1>What is ColonyOS and Colonies?</h1>
     ColonyOS is an open-source project created by <a href="https://www.ri.se/sv">RISE AB</a> to orchestrate AI/ML
-    workloads
-    across heterogeneous computing
-    platforms. The main component of ColonyOS is a service called
+    workloads across heterogeneous computing platforms. The main component of ColonyOS is a service called
     <b><a href="https://github.com/colonyos/colonies"> Colonies</a>.</b>
     <br>
     <br>
     Colonies provides functionality to establish trusted
-    distributed computing environments, process management, message-passing and functionality to orchestrate workloads.
+    distributed computing environments, process management, and functionality to orchestrate workloads.
     It is a building block to implement a
     <b><a href="https://en.wikipedia.org/wiki/Meta-system">Meta-Operating System</a></b>, an overlay built on
-    top of existing operating systems and platforms to create <i>compute continuums spanning devices, browsers, clouds
-        and edge and HPC platforms</i>.
+    top of existing operating systems and platforms to create <i>compute continuums spanning devices,
+        webapps, clouds, edges, and HPC platforms</i>.
     <br>
     <br>
     The core idea of Colonies is to split up complex workloads in two layers, a <b>meta-layer</b> and an
@@ -44,11 +41,12 @@
     <img width="800px" src="/meta-os.png">
     <br>
     <ul>
-        <li>The meta-layer makes it possible to describe and manage complex workflows
-            as meta-processes independently on their implementation and where they are executed.</li>
+        <li>The <b>Meta-layer</b> makes it possible to describe and manage complex workflows
+            as <b>meta-processes</b> independently of implementation and execution environment.</li>
 
-        <li>AI applications can then be broken down into composable functions executed by remote
-            workers anywhere on the Internet.
+        <li>The <b>Execution-layer</b> provides a serverless computing environment where developers can implement
+            workers capable of executing certain types of meta-processes. AI applications can then be broken
+            down into composable functions executed by remote workers anywhere on the Internet.</li>
 
         <li>A build-in <a href="https://en.wikipedia.org/wiki/Zero_trust_security_model">zero-trust protocol</a> makes
             it possible to organize remote workers as a
