@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: colonyosweb-deployment
+  labels:
+    app: colonyosweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: colonyosweb 
+  template:
+     metadata:
+       annotations:
+         timestamp: {{ now | quote }}
+       labels:
+         app: colonyosweb 
+     spec:
+       containers:
+       - name: colonyosweb
+         image: {{ .Values.DockerImage | quote }}
+         imagePullPolicy: "Always"
+         ports:
+           - containerPort: 1111

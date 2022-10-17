@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1 
+kind: Ingress
+metadata:
+  name: colonyosweb-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: colonyosweb-redirect@kubernetescrd
+spec:
+  rules:
+  - host: {{ .Values.ServerHostname | quote }} 
+    http:
+      paths:
+        - pathType: Prefix 
+          path: /
+          backend:
+            service:
+              name: colonyosweb-service
+              port: 
+                number: 1111 
+  tls:
+    - secretName: colonyosweb-colonyos-io-tls
+      hosts:
+        - {{ .Values.ServerHostname | quote }} 

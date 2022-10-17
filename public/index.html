@@ -32,11 +32,11 @@
     distributed computing environments, process management, message-passing and functionality to orchestrate workloads.
     It is a building block to implement a
     <b><a href="https://en.wikipedia.org/wiki/Meta-system">Meta-Operating System</a></b>, an overlay built on
-    top of existing operating systems and platforms to create a compute continuums spanning devices, browsers, clouds
-    and edge and HPC platforms.
+    top of existing operating systems and platforms to create <i>compute continuums spanning devices, browsers, clouds
+        and edge and HPC platforms</i>.
     <br>
     <br>
-    The core idea of workflow Colonies is to split up complex workloads in two layers, a <b>meta-layer</b> and an
+    The core idea of Colonies is to split up complex workloads in two layers, a <b>meta-layer</b> and an
     <b>execution-layer</b>.
 
     <br>
@@ -48,12 +48,11 @@
             as meta-processes independently on their implementation and where they are executed.</li>
 
         <li>AI applications can then be broken down into composable functions executed by remote
-            workers anywhere on the Internet, enabling a <i>compute continuum spanning devices,
-                cloud, edge, and HPC.</i></li>
+            workers anywhere on the Internet.
 
         <li>A build-in <a href="https://en.wikipedia.org/wiki/Zero_trust_security_model">zero-trust protocol</a> makes
             it possible to organize remote workers as a
-            single unit called a Colony, thus making it possible for users to keep control even if
+            single unit called a <b>Colony</b>, thus making it possible for users to keep control even if
             workloads are spread out and executed on many different platforms at the same time.</li>
     </ul>
 
@@ -64,17 +63,17 @@
 
     <h1>How does it work?</h1>
     <ul>
-        <li> Humans (or workers) submit meta-process to a Colony via a Colonies server. </li>
+        <li> Humans (or workers) submit meta-processes to a Colony via a Colonies server. </li>
         <li> Colonies workers connect to the Colonies server and search for suitable meta-processes to execute. </li>
         <li> Each worker must have a valid identity (like a passport) to prove its Colony membership and the
             Colonies server makes sure only authorized and qualified workers can connect and be assigned processes.</li>
         <li> Colonies workers can reside anywhere on the Internet, e.g. a server, inside a Kubernetes Pod,
             a smart phone app, or embedded in a web page</li>
-        <li>If a worker fails to complete a task in time, the task will be re-assigned to another worker.
-            This fail-safe mechanism ensures that all tasks are eventually completed.
-            This also makes it possible to apply Chaos Engineering, e.g. randomly kill workers to test the overall
-            stability
-            of the system.</li>
+        <li>If a worker fails to execute a process in time, the process will be re-assigned to another worker.
+            This fail-safe mechanism ensures that all processes are eventually completed.
+            This also makes it possible to apply <a href="https://en.wikipedia.org/wiki/Chaos_engineering">Chaos
+                Engineering</a>, e.g. randomly kill workers to test the overall
+            stability of the system.</li>
     </ul>
 
     <h1>Key features</h1>
@@ -97,7 +96,7 @@
         <li><b>Cron</b> to schedule process to be executed sometime in the future. </li>
         <li><b>Traceability</b>, full process execution history can be stored and used for auditing.</li>
         <li>Implemented in <b>Golang</b>.</li>
-        <li>SDKs in <a href="https://github.com/colonyos/rustrt">Rust</a>,
+        <li><b>SDKs</b> in <a href="https://github.com/colonyos/rustrt">Rust</a>,
             <a href="https://github.com/colonyos/pyruntime">Python</a>,
             <a href="https://github.com/colonyos/ColonyRuntime.jl">Julia</a>,
             <a href="https://github.com/colonyos/haskellrt">Haskell</a>,
