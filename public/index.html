@@ -1,0 +1,135 @@
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #f5f7fa;
+            font-family: 'Titillium Web' !important;
+            font-size: 18px;
+            margin-top: 10px;
+            margin-bottom: 100px;
+            margin-right: 150px;
+            margin-left: 80px;
+            width: 900px;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <center><img width="150px" src="logo_bg.png"></center>
+
+    <h1>What is ColonyOS and Colonies?</h1>
+    ColonyOS is an open-source project created by <a href="https://www.ri.se/sv">RISE AB</a> to orchestrate AI/ML
+    workloads
+    across heterogeneous computing
+    platforms. The main component of ColonyOS is a service called
+    <b><a href="https://github.com/colonyos/colonies"> Colonies</a>.</b>
+    <br>
+    <br>
+    Colonies provides functionality to establish trusted
+    distributed computing environments, process management, message-passing and functionality to orchestrate workloads.
+    It is a building block to implement a
+    <b><a href="https://en.wikipedia.org/wiki/Meta-system">Meta-Operating System</a></b>, an overlay built on
+    top of existing operating systems and platforms to create a compute continuums spanning devices, browsers, clouds
+    and edge and HPC platforms.
+    <br>
+    <br>
+    The core idea of workflow Colonies is to split up complex workloads in two layers, a <b>meta-layer</b> and an
+    <b>execution-layer</b>.
+
+    <br>
+    <br>
+    <img width="800px" src="/meta-os.png">
+    <br>
+    <ul>
+        <li>The meta-layer makes it possible to describe and manage complex workflows
+            as meta-processes independently on their implementation and where they are executed.</li>
+
+        <li>AI applications can then be broken down into composable functions executed by remote
+            workers anywhere on the Internet, enabling a <i>compute continuum spanning devices,
+                cloud, edge, and HPC.</i></li>
+
+        <li>A build-in <a href="https://en.wikipedia.org/wiki/Zero_trust_security_model">zero-trust protocol</a> makes
+            it possible to organize remote workers as a
+            single unit called a Colony, thus making it possible for users to keep control even if
+            workloads are spread out and executed on many different platforms at the same time.</li>
+    </ul>
+
+    Colonies is used today by <a href="https://www.rocksigma.com">RockSigma AB</a> to implement a High-Performance
+    seismic processing engine for underground mines on top of Kubernetes.
+
+    See <a href="https://github.com/colonyos/colonies">GitHub</a> for more information.
+
+    <h1>How does it work?</h1>
+    <ul>
+        <li> Humans (or workers) submit meta-process to a Colony via a Colonies server. </li>
+        <li> Colonies workers connect to the Colonies server and search for suitable meta-processes to execute. </li>
+        <li> Each worker must have a valid identity (like a passport) to prove its Colony membership and the
+            Colonies server makes sure only authorized and qualified workers can connect and be assigned processes.</li>
+        <li> Colonies workers can reside anywhere on the Internet, e.g. a server, inside a Kubernetes Pod,
+            a smart phone app, or embedded in a web page</li>
+        <li>If a worker fails to complete a task in time, the task will be re-assigned to another worker.
+            This fail-safe mechanism ensures that all tasks are eventually completed.
+            This also makes it possible to apply Chaos Engineering, e.g. randomly kill workers to test the overall
+            stability
+            of the system.</li>
+    </ul>
+
+    <h1>Key features</h1>
+    <ul>
+        <li><b>High-availability</b>. Colonies is based on <a href="https://etcd.io/">Etcd</a> and is scalable and
+            robust.</li>
+        <li>A built-in crypto-protocol
+            <a href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm">ECDSA</a>
+            (Elliptic Curve Digital Signature Algorithm)
+            provides identity management and secure and zero-trust process execution.
+        </li>
+        <li><b>Robust batch processing and distributed RPC</b>. Processes not finishing in time are
+            automatically moved back to the job queue to be executed by another worker. </li>
+        <li><b>Pull-based orchestration</b>. Users (or workers) submit meta process specifications the Colonies server.
+            Colonies workers connect to the Colonies server and request processes to execute.
+            A HTTP Long Polling/WebSocket protocol ensure that workers can reside anywhere on the Internet,
+            even behind firewalls. The Colonies server never establish connections directly to workers.</li>
+        <li><b>Multi-step workflows</b> or Directed Acyclic Graph (DAG) to capture dependencies between jobs.</li>
+        <li><b>Generators</b> to automatically spawn new workflows based on external events or timeouts.</li>
+        <li><b>Cron</b> to schedule process to be executed sometime in the future. </li>
+        <li><b>Traceability</b>, full process execution history can be stored and used for auditing.</li>
+        <li>Implemented in <b>Golang</b>.</li>
+        <li>SDKs in <a href="https://github.com/colonyos/rustrt">Rust</a>,
+            <a href="https://github.com/colonyos/pyruntime">Python</a>,
+            <a href="https://github.com/colonyos/ColonyRuntime.jl">Julia</a>,
+            <a href="https://github.com/colonyos/haskellrt">Haskell</a>,
+            <a href="https://github.com/colonyos/colonyruntime.js">JavaScript</a>, and
+            <a href="https://github.com/colonyos/colonies/tree/main/pkg/client">Golang</a>.
+        </li>
+    </ul>
+
+    <h1>Kubernetes</h1>
+    <ul>
+        <li>In addition to orchestrate workflows acress platforms, Colonies also makes it possible to orchestrate
+            processes
+            inside containers. This is far more efficient than launching a new container for each new job like Argo
+            Workflows. This is especially important when dealing with AI workflows consisting of huge containers (tens
+            of
+            gigabytes) or when a large amount of data needs to be shuffled into memory.</li>
+        <li>Colonies complements Kubernetes and brings robust and fault tolerant batch processing to Kubernetes,
+            typically
+            needed by many AI workloads.
+        </li>
+        <li>At the same time, Colonies is lightweight and does not require Kubernetes. It runs in browsers, smart phones
+            or
+            IoT devices. This also makes it much easier to develop and test complex workflows before they are deployed
+            on
+            Kubernetes.</li>
+        <li>Most existing frameworks are not built on top of a crypto-protocol, which makes them hard to use in an
+            overlay
+            across platforms and untrusted networks.</li>
+    </ul>
+
+    <h1>Contact</h1>
+    johan.kristiansson@ri.se
+</body>
+
+</html>
