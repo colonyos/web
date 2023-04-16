@@ -3,98 +3,109 @@
 <head>
     <style>
         body {
-            background-color: #f5f7fa;
-            font-family: 'Titillium Web' !important;
+            background-color: #FFFFFF;
+            font-family: 'Titillium', sans-serif;
             font-size: 18px;
             margin-top: 10px;
-            margin-bottom: 100px;
-            margin-right: 150px;
-            margin-left: 80px;
-            width: 900px;
-            height: 100%;
+            margin-bottom: 50px;
+            margin-right: 100px;
+            margin-left: 100px;
+        }
+
+        #title {
+            background-color: #FFFFFF;
+            font-family: 'Titillium', sans-serif;
+            font-size: 60px;
+            font-weight: bold;
+            margin-left: 10px;
+            vertical-align: middle
+        }
+
+        #header {
+            font-family: 'Titillium', sans-serif;
+            display: flex;
+            align-items: center;
+            height: 120px;
+            justify-content: center;
+        }
+
+        #slogan {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            margin-top: 10px;
         }
     </style>
 </head>
 
 <body>
-    <center><img width="150px" src="logo_bg.png"></center>
+    <div id=header>
+        <img width="150px" src="logo_bg.png">
+        <span id="title">Colonies</span>
+    </div>
+    <div id=slogan>
+        <span>Creating Compute Continuums across Platforms</span>
+    </div>
 
-    <h1>What is ColonyOS and Colonies?</h1>
-    ColonyOS is an open-source project created by <a href="https://www.ri.se/sv">RISE AB</a> to orchestrate AI/ML
-    workloads across heterogeneous computing platforms. The main component of ColonyOS is a service called
-    <b><a href="https://github.com/colonyos/colonies"> Colonies</a>.</b>
+    <h1>What is Colonies?</h1>
+    <b><a href="https://github.com/colonyos/colonies">Colonies</a></b> is an open-source project initiated by <a
+        href="https://www.ri.se">RISE AB</a>,
+    designed to streamline computational workloads across various platforms. Colonies provides a <b>distributed runtime
+        environment</b>, known as a <i><b>Colony</b></i>, enabling development, deployment, and execution of
+    microservices ubiquitously over the
+    Internet. This allows for seamless integration with other systems and creation of <i><b>Compute Continuums</b></i>.
     <br>
     <br>
-    Colonies provides functionality to establish trusted
-    distributed computing environments, process management, and functionality to orchestrate workloads.
-    It is a building block to implement a
-    <b><a href="https://en.wikipedia.org/wiki/Meta-system">Meta-Operating System</a></b>, an overlay built on
-    top of existing operating systems and platforms to create <i>compute continuums spanning devices,
-        webapps, clouds, edges, and HPC platforms</i>.
+    A Colony is a loosely-coupled collection of distributed microservices called <b>Executors</b>. A zero-trust
+    security protocol based on the principle <i><b>trust, but verify</b></i> enables the Executors to operate as a
+    unified
+    entity. Each colony is governed by a private key that serves as a central authority, analogous to <i><b>one ring to
+            rule them all</b></i>, making it possible to control a Colony as if it was a single machine.
     <br>
     <br>
-    The core idea of Colonies is to split up complex workloads in two layers, a <b>Meta-layer</b> and an
-    <b>Execution-layer</b>.
-
+    <center><img width="600px" src="/arch.png"></center>
     <br>
     <br>
-    <img width="800px" src="/meta-os.png">
+    A fundamental concept is the notion of <b>processes</b> which contains meta-information about
+    computations to be carried out by the Executors. Colonies provides a protocol that enables Executors to publish
+    instructions that are subsequently assigned to other Executor members of the same Colony. In this way, the Colonies
+    serves as a job broker, almost like an employment agency for people. By linking the
+    instructions into
+    Directed Acyclic Graphs (DAGs) it becomes possible to seamlessly execute workloads across platforms.
     <br>
-    <ul>
-        <li>The <b>Meta-layer</b> makes it possible to describe and manage complex workflows
-            as <b>meta-processes</b> independently of implementation and execution environment.</li>
-
-        <li>The <b>Execution-layer</b> provides a serverless computing environment where developers can implement
-            workers capable of executing certain types of meta-processes. AI applications can then be broken
-            down into composable functions executed by remote workers anywhere on the Internet.</li>
-
-        <li>A build-in <a href="https://en.wikipedia.org/wiki/Zero_trust_security_model">zero-trust protocol</a> makes
-            it possible to organize remote workers as a
-            single unit called a <b>Colony</b>, thus making it possible for users to keep control even if
-            workloads are spread out and executed on many different platforms at the same time.</li>
-    </ul>
+    <br>
     See <a href="https://github.com/colonyos/colonies">GitHub</a> for more information.
-    <br>
-    <br>
-    Colonies is used today by <a href="https://www.rocksigma.com">RockSigma AB</a> to implement a High-Performance
-    seismic processing engine for underground mines on top of Kubernetes.
 
-
-    <h1>How does it work?</h1>
+    <h1>Use cases</h1>
     <ul>
-        <li> Humans (or workers) submit meta-processes to a Colony via a Colonies server. </li>
-        <li> Colonies workers connect to the Colonies server and search for suitable meta-processes to execute. </li>
-        <li> Each worker must have a valid identity (like a passport) to prove its Colony membership and the
-            Colonies server makes sure only authorized and qualified workers can connect and be assigned processes.</li>
-        <li> Colonies workers can reside anywhere on the Internet, e.g. a server, inside a Kubernetes Pod,
-            a smart phone app, or embedded in a web page</li>
-        <li>If a worker fails to execute a process in time, the process will be re-assigned to another worker.
-            This fail-safe mechanism ensures that all processes are eventually completed.
-            This also makes it possible to apply <a href="https://en.wikipedia.org/wiki/Chaos_engineering">Chaos
-                Engineering</a>, e.g. randomly kill workers to test the overall
-            stability of the system.</li>
+        <li> <b>Edge computing</b>. Implement and run an Executor on a drone to offload computation to an edge server.
+        </li>
+        <li> <b>High-performance computing</b>. Develop hybrid workflows running both on HPC (e.g. Slurm) and
+            Kubernetes.
+        </li>
+        <li> <b>Serverless computing</b>. Develop a FaaS platform to run functions across platforms.</li>
+        <li> <b>Distributed processing</b>. Build scalable and robust data pipelines on Kubernetes to process e.g. Earth
+            Observation data.</li>
     </ul>
 
     <h1>Key features</h1>
     <ul>
-        <li><b>High-availability</b>. Colonies is based on <a href="https://etcd.io/">Etcd</a> and is scalable and
-            robust.</li>
-        <li>A built-in crypto-protocol
+        <li>Colonies builds on <a href="https://etcd.io/">Etcd</a> and is <b>scalable</b> and <b>robust</b>. Processes
+            not finishing in time are automatically re-assigned to other Executors.
+        </li>
+        <li>A <b>built-in crypto-protocol</b>
             <a href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm">ECDSA</a>
             (Elliptic Curve Digital Signature Algorithm)
-            provides identity management and secure and zero-trust process execution.
+            provides identity management and secure process execution.
         </li>
-        <li><b>Robust batch processing and distributed RPC</b>. Processes not finishing in time are
-            automatically moved back to the job queue to be executed by another worker. </li>
-        <li><b>Pull-based orchestration</b>. Users (or workers) submit meta process specifications the Colonies server.
-            Colonies workers connect to the Colonies server and request processes to execute.
-            A HTTP Long Polling/WebSocket protocol ensure that workers can reside anywhere on the Internet,
-            even behind firewalls. The Colonies server never establish connections directly to workers.</li>
-        <li><b>Multi-step workflows</b> or Directed Acyclic Graph (DAG) to capture dependencies between jobs.</li>
-        <li><b>Generators</b> to automatically spawn new workflows based on external events or timeouts.</li>
-        <li><b>Cron</b> to schedule process to be executed sometime in the future. </li>
-        <li><b>Traceability</b>, full process execution history can be stored and used for auditing.</li>
-        <li>Implemented in <b>Golang</b>.</li>
+        <li><b>A HTTP-based protocol</b> ensure that Executors can reside anywhere on the Internet,
+            even behind firewalls. The Colonies server never establish connections directly to an Executor.</li>
+        <li><b>Multi-step workflows</b></li>
+        <li><b>Workflow templates</b> to automatically spawn new workflows based on external events or timeouts.</li>
+        <li><b>Cron</b> to schedule workflows to be executed in the future. </li>
+        <li><b>Traceability</b>. Full process execution history is stored and can be used for auditing and debugging.
+        </li>
         <li><b>SDKs</b> in <a href="https://github.com/colonyos/rustrt">Rust</a>,
             <a href="https://github.com/colonyos/pyruntime">Python</a>,
             <a href="https://github.com/colonyos/ColonyRuntime.jl">Julia</a>,
@@ -102,28 +113,6 @@
             <a href="https://github.com/colonyos/colonyruntime.js">JavaScript</a>, and
             <a href="https://github.com/colonyos/colonies/tree/main/pkg/client">Golang</a>.
         </li>
-    </ul>
-
-    <h1>Kubernetes</h1>
-    <ul>
-        <li>In addition to orchestrate workflows acress platforms, Colonies also makes it possible to orchestrate
-            processes
-            inside containers. This is far more efficient than launching a new container for each new job like Argo
-            Workflows. This is especially important when dealing with AI workflows consisting of huge containers (tens
-            of
-            gigabytes) or when a large amount of data needs to be shuffled into memory.</li>
-        <li>Colonies complements Kubernetes and brings robust and fault tolerant batch processing to Kubernetes,
-            typically
-            needed by many AI workloads.
-        </li>
-        <li>At the same time, Colonies is lightweight and does not require Kubernetes. It runs in browsers, smart phones
-            or
-            IoT devices. This also makes it much easier to develop and test complex workflows before they are deployed
-            on
-            Kubernetes.</li>
-        <li>Most existing frameworks are not built on top of a crypto-protocol, which makes them hard to use in an
-            overlay
-            across platforms and untrusted networks.</li>
     </ul>
 
     <h1>Contact</h1>
